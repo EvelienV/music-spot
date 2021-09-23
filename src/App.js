@@ -1,8 +1,14 @@
+import React from "react";
 import './App.css';
+import Header from "./components/header/Header";
 
 function App() {
   return (
-    <div>Hello World</div>
+    <>
+      <Header></Header>
+      <div>Hello World</div>
+    </>
+
   );
 }
 
