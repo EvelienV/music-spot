@@ -10,17 +10,13 @@ ul {
     justify-content: flex-end;
 }
 
-li {
-
-}
-
-li a {
+.link {
     color: white;
     text-decoration: none;
     align-items: center;
     margin: 18px;
 }
 
-li a:hover {
+.link:hover {
     background-color: #A00;
 }
