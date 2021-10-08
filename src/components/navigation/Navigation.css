@@ -15,6 +15,7 @@ ul {
     text-decoration: none;
     align-items: center;
     margin: 18px;
+    text-transform: uppercase;
 }
 
 .link:hover {

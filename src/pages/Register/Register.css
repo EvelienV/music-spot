@@ -1,0 +1,59 @@
+/* Alles wat men buiten de media query specificeert, geldt dan voor mobiele apparaten */
+.small-container {
+    margin: 30% auto 30%;
+    display: flex;
+    flex-direction: column;
+    border: black solid 4px;
+    padding: 24px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-top: 18px;
+    padding: 8px;
+}
+
+button {
+    margin-top: 18px;
+    margin-bottom: 62px;
+    padding: 8px;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.register-button {
+    background-color: #EB7F12;
+    border-radius: 8px;
+}
+
+.small-title {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+/* Minimaal 768px betekend regels die gelden voor tablets */
+@media screen and (min-width: 768px) {
+    .small-container {
+        width: 30%;
+    }
+}
+
+/* Minimaal 992px betekend regels die gelden voor kleine computerschermen */
+@media screen and (min-width: 992px) {
+
+}
+
+
+
+
+
+
+

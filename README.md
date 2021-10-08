@@ -1,4 +1,29 @@
+# Music Spot
 
+## What is it?
+
+You can use this application to get the 50 most recently listened tracks from your Spotify account. The application 
+will search for the music video on youtube so you can play the music video instantly.
+
+## Getting started
+
+Make a spotify project on https://developer.spotify.com/
+
+Set the project_url to http://localhost:3000
+
+Set the redirect_uri to http://localhost:3000/callback
+
+Fill in the requested information in your .env file (See .env.example)
+
+Request a Google API key on https://developers.google.com/. 
+
+Install and run the application (see available scripts)
+
+Register as a Music Spot user and login
+
+Give permission to share information from your Spotify account
+
+Have fun!
 
 # Getting Started with Create React App
 
@@ -70,3 +95,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+

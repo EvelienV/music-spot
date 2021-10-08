@@ -1,0 +1,22 @@
+.videos {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: space-evenly;
+}
+
+.header-left {
+    text-align: left;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.videos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divider {
+    border-top: 24px solid red;
+}
