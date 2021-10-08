@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import './App.css';
-import Header from "./components/header/Header";
+import Navigation from "./components/navigation/Navigation";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,11 +10,15 @@ import HomePage from "./pages/Home/Home";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import PlayerPage from "./pages/Player/Player";
+import CallbackPage from "./pages/Callback/Callback";
+import ProfilePage from "./pages/Profile/Profile";
 
 function App() {
+  const [ isAuthenticated, toggleIsAuthenticated ] = useState(false)
+
   return (
     <Router>
-      <Header></Header>
+      <Navigation isAuth={isAuthenticated} toggleAuth={toggleIsAuthenticated} />
       <Switch>
         <Route exact path="/">
           <HomePage/>
@@ -25,8 +29,14 @@ function App() {
         <Route path="/register">
           <RegisterPage/>
         </Route>
-        <Route path="/player">
+        <Route path="/player" isAuth={isAuthenticated}>
           <PlayerPage/>
+        </Route>
+        <Route path="/callback">
+          <CallbackPage/>
+        </Route>
+        <Route path="/user-profile" isAuth={isAuthenticated}>
+          <ProfilePage/>
         </Route>
       </Switch>
     </Router>
@@ -34,3 +44,8 @@ function App() {
 }
 
 export default App;
+//Vragen:
+// Data API ophalen in App.js of op de pagina waar het nodig is
+// Callback page, nodig voor ophalen code, daarna weer naar home? Of home de callback page maken?
+// CSS verwarrend dat het globaal werkt, hoe hiermee om te gaan, syling van buttons etc en andere algemene dingen in app.css en verder specifieke klasses?
+

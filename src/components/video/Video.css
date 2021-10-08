@@ -1,0 +1,18 @@
+.video {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    align-content: center;
+}
+
+.artist-name {
+    margin-top: 8px;
+    word-wrap: break-word;
+}
+
+.track-name {
+    margin-top: 8px;
+    word-wrap: break-word;
+}
