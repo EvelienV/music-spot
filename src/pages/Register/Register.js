@@ -1,7 +1,7 @@
 import React from "react";
 import {useForm} from "react-hook-form";
 import axios from "axios";
-import "./Register.css";
+import styles from "./Register.module.css";
 
 function RegisterPage() {
   const { register, handleSubmit } = useForm();
@@ -23,8 +23,8 @@ function RegisterPage() {
 
   return (
     <>
-      <div className="small-container">
-        <h1 className="small-title">Register to watch the music videos of your recently played music</h1>
+      <div className={styles["small-container"]}>
+        <h1 className={styles["small-title"]}>Register to watch the music videos of your recently played music</h1>
         <form onSubmit={handleSubmit(onRegister)}>
           <input
             type="text"
@@ -52,7 +52,7 @@ function RegisterPage() {
             placeholder="Password"
             required="required"
           />
-          <button className="register-button" type="submit">
+          <button className={styles["register-button"]} type="submit">
             Register
           </button>
           //TODO: Na klikken op registreren en succes door naar login page

@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import "./Login.css";
+import styles from "./Login.module.css";
 
 function LoginPage() {
   const { register, handleSubmit } = useForm();
@@ -21,8 +21,8 @@ function LoginPage() {
 
   return (
     <>
-      <div className="small-container">
-        <h1 className="small-title">Login to watch the music videos of your recently played music</h1>
+      <div className={styles["small-container"]}>
+        <h1 className={styles["small-title"]}>Login to watch the music videos of your recently played music</h1>
         <form onSubmit={handleSubmit(onLogin)}>
           <input
             type="text"
@@ -41,7 +41,7 @@ function LoginPage() {
             placeholder="Password"
             required="required"
           />
-          <button className="login-button" type="submit">
+          <button className={styles["login-button"]} type="submit">
             Login
           </button>
         </form>

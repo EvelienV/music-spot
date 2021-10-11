@@ -6,9 +6,8 @@
 }
 
 .header-left {
-    text-align: left;
-    margin-top: 18px;
-    margin-bottom: 18px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 .videos-container {
@@ -17,6 +16,13 @@
     align-items: center;
 }
 
-.divider {
-    border-top: 24px solid red;
+@media screen and (min-width: 768px) {
+    .videos-container {
+        margin: 64px;
+    }
+
+    .header-left {
+        align-self: flex-start;
+    }
+
 }

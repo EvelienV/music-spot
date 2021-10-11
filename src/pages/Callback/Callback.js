@@ -3,7 +3,7 @@ import queryString from "query-string";
 import {withRouter} from "react-router-dom"; //useHistory
 import axios from "axios";
 import Video from "../../components/video/Video";
-import "./Callback.css";
+import styles from "./Callback.module.css";
 
 function CallbackPage(props) {
   const [error, setError] = useState(null)
@@ -38,16 +38,13 @@ function CallbackPage(props) {
     }
   }
 
-
-
   return (
     <>
-      <div className="videos-container">
+      <div className={styles["videos-container"]}>
       {Object.keys(recentlyPlayed).length > 0 &&
         <>
-
-          <h1 className="header-left">Recently played songs</h1>
-          <div className="videos">
+          <h1 className={styles["header-left"]}>Recently played songs</h1>
+          <div className={styles["videos"]}>
             {recentlyPlayed.items.map((recentPlay) => {
               return <Video
                 key={recentPlay.track.id}

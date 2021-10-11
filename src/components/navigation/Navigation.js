@@ -1,6 +1,7 @@
 import React from "react";
-import "./Navigation.css";
+import styles from "./Navigation.module.css";
 import {NavLink, useHistory} from "react-router-dom";
+import logo from "../../public/logo-192x192.png"
 
 // eslint-disable-next-line react/prop-types
 function Navigation({ isAuth, toggleAuth }) {
@@ -13,18 +14,23 @@ function Navigation({ isAuth, toggleAuth }) {
 
   return (
     <header>
+      <div>
+        <img src={logo}
+             alt="logo"
+             className={styles["logo"]}/>
+      </div>
       <ul>
         <NavLink to="/" exact>
-          <li className="link">Home</li>
+          <li className={styles["link"]}>Home</li>
         </NavLink>
         {isAuth === true ?
           <>
             <NavLink to="/player">
-              <li className="link">Player</li>
+              <li className={styles["link"]}>Player</li>
             </NavLink>
 
             <NavLink to="/profile">
-              <li className="link">Profile</li>
+              <li className={styles["link"]}>Profile</li>
             </NavLink>
             <li>
               <button type="button" onClick={signOut}>
@@ -34,10 +40,10 @@ function Navigation({ isAuth, toggleAuth }) {
           </> :
           <>
             <NavLink to="/register">
-              <li className="link">Register</li>
+              <li className={styles["link"]}>Register</li>
             </NavLink>
             <NavLink to="/login">
-              <li className="link">Login</li>
+              <li className={styles["link"]}>Login</li>
             </NavLink>
           </>
         }

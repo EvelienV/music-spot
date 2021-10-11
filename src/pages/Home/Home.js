@@ -16,6 +16,7 @@ function HomePage() {
   return (
     <>
       //Als gebruiker is ingelogd bij novi backend en nog geen spotify authorisatie heeft gegeven
+
       <h1>Welcome</h1>
       <button onClick={login}>Geef toegang tot jouw spotify acount</button>
 

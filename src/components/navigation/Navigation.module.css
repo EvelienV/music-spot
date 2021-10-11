@@ -1,6 +1,11 @@
 header {
     background-color: black;
-    height: 48px;
+    height: 64px;
+    display: flex;
+    justify-content: space-around;
+    padding-left: 64px;
+    padding-right: 64px;
+    margin-bottom: 64px;
 }
 
 ul {
@@ -18,6 +23,11 @@ ul {
     text-transform: uppercase;
 }
 
-.link:hover {
+.logo {
+    display: inline;
+    width: 128px;
+}
+
+a:hover {
     background-color: #A00;
 }

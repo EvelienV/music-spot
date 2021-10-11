@@ -1,6 +1,6 @@
-/* Alles wat men buiten de media query specificeert, geldt dan voor mobiele apparaten */
+/* mobiele apparaten en overall */
 .small-container {
-    margin: 30% auto 30%;
+    margin: 15% auto 30%;
     display: flex;
     flex-direction: column;
     border: black solid 4px;
@@ -29,8 +29,8 @@ button {
     text-transform: uppercase;
 }
 
-.register-button {
-    background-color: #EB7F12;
+.login-button {
+    background-color: #5893F2;
     border-radius: 8px;
 }
 
@@ -39,21 +39,14 @@ button {
     margin-bottom: 18px;
 }
 
-/* Minimaal 768px betekend regels die gelden voor tablets */
+/* Minimaal 768px */
 @media screen and (min-width: 768px) {
     .small-container {
         width: 30%;
     }
 }
 
-/* Minimaal 992px betekend regels die gelden voor kleine computerschermen */
+/* Minimaal 992px */
 @media screen and (min-width: 992px) {
 
 }
-
-
-
-
-
-
-
