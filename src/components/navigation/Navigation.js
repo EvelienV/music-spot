@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Navigation.module.css";
 import {NavLink, useHistory} from "react-router-dom";
-import logo from "../../public/logo-192x192.png"
+import logo from "./logo-192x192.png"
 
 // eslint-disable-next-line react/prop-types
 function Navigation({ isAuth, toggleAuth }) {

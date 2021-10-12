@@ -9,19 +9,10 @@ function HomePage() {
 
   //TODO: current playing, pause, play, shuffle, next , previous
 
-  // Search on youtube > GET https://www.googleapis.com/youtube/v3/search // quota costs 100 units
-  // type: video, part:snippet, q: artist name, track name
-  // response object items.id.videoId
-
   return (
     <>
-      //Als gebruiker is ingelogd bij novi backend en nog geen spotify authorisatie heeft gegeven
-
       <h1>Welcome</h1>
       <button onClick={login}>Geef toegang tot jouw spotify acount</button>
-
-      // als gebruiker is ingelogd bij novi backend en ook een spotify authorisatie heeft
-
     </>
 
   )

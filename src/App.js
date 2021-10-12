@@ -47,5 +47,4 @@ export default App;
 //Vragen:
 // Data API ophalen in App.js of op de pagina waar het nodig is
 // Callback page, nodig voor ophalen code, daarna weer naar home? Of home de callback page maken?
-// CSS verwarrend dat het globaal werkt, hoe hiermee om te gaan, syling van buttons etc en andere algemene dingen in app.css en verder specifieke klasses?
 
