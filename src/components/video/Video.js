@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./Video.module.css"
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-function Video({trackName, trackArtist}) {
-  const [error, setError] = useState(null)
+function Video({trackName, trackArtist, className}) {
+  const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [videoID, setVideoID] = useState();
+  const [videoID, setVideoID] = useState()
+
+  useEffect(() => {
+    fetchVideoId()
+  }, [])
 
   async function fetchVideoId() {
     setError(false)
@@ -16,18 +20,21 @@ function Video({trackName, trackArtist}) {
         headers: {}
         })
       setVideoID(videoListTrack.data.items[0].id.videoId)
-      console.log(videoID)
-      setLoading(false)
     } catch (e) {
+      console.log(e.response.data.error.message)
       setError(true)
-      setLoading(false)
+
     }
+    setLoading(false)
   }
 
-
-
   return (
-    <div className={styles["video"]}>
+    <>
+    { loading === true &&
+    <p>Loading...</p>}
+
+    { loading === false && error === false &&
+    <div className={styles[`{className}`]}>
       <iframe title="title"
               src={`https://www.youtube.com/embed/${videoID}`} frameBorder="0"
               allowFullScreen
@@ -35,12 +42,17 @@ function Video({trackName, trackArtist}) {
       </iframe>
       <p className={styles["artist-name"]}>{trackArtist}</p>
       <p className={styles["track-name"]}>{trackName}</p>
-      <button type="button" onClick={fetchVideoId}>
-        Haal de video ID op
-      </button>
-    </div>
+    </div>}
 
-
+    {error === true
+    &&
+      <>
+        <p>Oops... out of credits</p>
+        <p className={styles["artist-name"]}>{trackArtist}</p>
+        <p className={styles["track-name"]}>{trackName}</p>
+      </>
+    }
+    </>
   );
 }
 

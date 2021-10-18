@@ -2,21 +2,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styles from "./Login.module.css";
+import {Link} from "react-router-dom";
 
 function LoginPage() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   async function onLogin(data) {
-    const test = await axios.get('https://polar-lake-14365.herokuapp.com/api/test/all');
-    console.log(test)
-    const result = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signin', {
-      username: 'test',
-      password: '123456',
-    }, {
-      'Content-Type': 'application/json'
-    });
-    console.log(result)
-    console.log(data)
+    try {
+      const test = await axios.get('https://polar-lake-14365.herokuapp.com/api/test/all');
+      const result = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signin', {
+        username: data.username,
+        password: data.password,
+      });
+      console.log(result)
+      console.log(data)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -27,24 +29,30 @@ function LoginPage() {
           <input
             type="text"
             {...register("username", {
-              required: "required",
+              required: "Username cannot be empty"
             })}
             id="username"
             placeholder="Username"
           />
+          {errors.username && <p className="error-message">{errors.username.message}</p>}
           <input
-            type="text"
+            type="password"
             {...register("password", {
-              required: "required",
+              required: "Password must have at least 6 characters",
+              minLength: {
+                value: 6,
+                message: "Password must have at least 6 characters"
+              }
             })}
             id="password"
             placeholder="Password"
-            required="required"
           />
+          {errors.password && <p className="error-message">{errors.password.message}</p>}
           <button className={styles["login-button"]} type="submit">
             Login
           </button>
         </form>
+        <p>Not registered yet? <Link to="/register">Register</Link></p>
       </div>
     </>
 

@@ -4,3 +4,15 @@
     font-family: Krungthep;
 }
 
+a, a.active, a.visited, a.focus {
+    text-decoration: none;
+}
+
+.current {
+    border-bottom: 4px solid #A00;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}

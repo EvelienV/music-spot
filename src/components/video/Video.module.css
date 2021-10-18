@@ -1,10 +1,14 @@
-.video {
+.recently-played {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     flex-wrap: wrap;
     margin-bottom: 18px;
     align-content: center;
+}
+
+.currently-playing {
+    width: 500px;
 }
 
 .artist-name {

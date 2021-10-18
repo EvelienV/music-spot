@@ -1,0 +1,38 @@
+.header-left {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.container {
+    text-align: center;
+    margin: auto 64px auto 64px;
+}
+
+p, h2 {
+    margin-bottom: 12px;
+}
+
+ol {
+    text-align: left;
+    display: inline-block;
+}
+
+.spotify-button {
+    background-color: #1ed760;
+    border-radius: 8px;
+    margin: 18px auto 24px auto;
+    padding: 8px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: block;
+}
+
+/* Minimaal 768px */
+@media screen and (min-width: 768px) {
+
+}
+
+/* Minimaal 992px */
+@media screen and (min-width: 992px) {
+
+}

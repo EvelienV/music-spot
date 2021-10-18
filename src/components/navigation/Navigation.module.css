@@ -15,10 +15,9 @@ ul {
     justify-content: flex-end;
 }
 
-.link {
+.list-item {
     color: white;
     text-decoration: none;
-    align-items: center;
     margin: 18px;
     text-transform: uppercase;
 }
@@ -28,6 +27,6 @@ ul {
     width: 128px;
 }
 
-a:hover {
+ul > a:hover {
     background-color: #A00;
 }

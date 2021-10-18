@@ -21,17 +21,14 @@ input {
     padding: 8px;
 }
 
-button {
+.login-button {
+    background-color: #5893F2;
+    border-radius: 8px;
     margin-top: 18px;
     margin-bottom: 62px;
     padding: 8px;
     font-size: 24px;
     text-transform: uppercase;
-}
-
-.login-button {
-    background-color: #5893F2;
-    border-radius: 8px;
 }
 
 .small-title {
