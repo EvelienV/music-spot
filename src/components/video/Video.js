@@ -46,11 +46,11 @@ function Video({trackName, trackArtist, className}) {
 
     {error === true
     &&
-      <>
+      <div className={styles["recently-played"]} >
         <p>Oops... out of credits</p>
         <p className={styles["artist-name"]}>{trackArtist}</p>
         <p className={styles["track-name"]}>{trackName}</p>
-      </>
+      </div>
     }
     </>
   );

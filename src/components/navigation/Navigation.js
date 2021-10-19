@@ -1,16 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./Navigation.module.css";
-import {NavLink, useHistory} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import logo from "../../assets/logo-192x192.png"
+import {AuthContext} from "../../context/AuthContext";
 
 // eslint-disable-next-line react/prop-types
-function Navigation({ isAuth, toggleAuth }) {
-  const history = useHistory();
-
-  function signOut() {
-    toggleAuth(false)
-    history.push('/')
-  }
+function Navigation() {
+  const data = useContext(AuthContext)
 
   return (
     <header>
@@ -20,24 +16,23 @@ function Navigation({ isAuth, toggleAuth }) {
              className={styles["logo"]}/>
       </div>
       <ul>
-        <NavLink to="/" exact activeClassName="current" >
+        <NavLink exact to="/home" activeClassName="current" >
           <li className={styles["list-item"]}>Home</li>
         </NavLink>
-        {isAuth === true ?
+        {data.isAuth === true &&
           <>
-            <NavLink to="/player" activeClassName="current" >
-              <li className={styles["list-item"]}>Player</li>
-            </NavLink>
-
-            <NavLink to="/profile" activeClassName="current" >
+            <NavLink to="/profile" activeClassName="current">
               <li className={styles["list-item"]}>Profile</li>
             </NavLink>
-            <li>
-              <button type="button" onClick={signOut}>
+            <li className={styles["list-item"]}>
+              <button type="button" onClick={data.logoff}>
                 Logout
               </button>
             </li>
-          </> :
+          </>
+        }
+
+        {data.isAuth === false &&
           <>
             <NavLink to="/register" activeClassName="current">
               <li className={styles["list-item"]}>Register</li>
@@ -48,7 +43,6 @@ function Navigation({ isAuth, toggleAuth }) {
           </>
         }
       </ul>
-
     </header>
   );
 }

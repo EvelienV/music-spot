@@ -20,8 +20,6 @@ function RegisterPage() {
       }, {
         'Content-Type': 'application/json'
       });
-      console.log(result)
-      console.log(data)
       history.push("/login")
     } catch (e) {
       console.error(e.response)

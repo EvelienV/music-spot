@@ -16,8 +16,7 @@ function CallbackPage(props) {
 
   useEffect(() => {
     fetchData()
-    console.log("effect called")
-  }, [])
+  })
 
   async function fetchData() {
     setError(false)

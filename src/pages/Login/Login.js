@@ -1,23 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styles from "./Login.module.css";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 
 function LoginPage() {
+  const history = useHistory();
+  const { login } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   async function onLogin(data) {
     try {
-      const test = await axios.get('https://polar-lake-14365.herokuapp.com/api/test/all');
-      const result = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signin', {
+      const result = await axios.post("https://polar-lake-14365.herokuapp.com/api/auth/signin", {
         username: data.username,
         password: data.password,
-      });
-      console.log(result)
-      console.log(data)
+      })
+      login(result.data)
+      history.push("/home")
     } catch (e) {
-      console.error(e)
+      console.error(e.response)
     }
   }
 
@@ -55,8 +57,7 @@ function LoginPage() {
         <p>Not registered yet? <Link to="/register">Register</Link></p>
       </div>
     </>
-
-  )
+  );
 }
 
 export default LoginPage;

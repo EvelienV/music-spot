@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { withRouter } from "react-router-dom";
 import styles from "./Home.module.css"
+import {AuthContext} from "../../context/AuthContext";
 
 function HomePage() {
+  const data = useContext(AuthContext)
 
-  function login() {
+  function loginSpotify() {
     window.open(`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=user-read-recently-played%20user-modify-playback-state%20user-read-currently-playing`,"_self")
   }
 
@@ -28,7 +30,9 @@ function HomePage() {
             You can click play and have some fun!
           </li>
         </ol>
-        <button className={styles["spotify-button"]} onClick={login}>Give access to Spotify</button>
+        {data.isAuth === true &&
+          <button className={styles["spotify-button"]} onClick={loginSpotify}>Give access to Spotify</button>
+        }
       </div>
 
     </>

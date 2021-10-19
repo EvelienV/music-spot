@@ -9,18 +9,15 @@ import {
 import HomePage from "./pages/Home/Home";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
-import PlayerPage from "./pages/Player/Player";
 import CallbackPage from "./pages/Callback/Callback";
 import ProfilePage from "./pages/Profile/Profile";
 
 function App() {
-  const [ isAuthenticated, toggleIsAuthenticated ] = useState(false)
-
   return (
     <Router>
-      <Navigation isAuth={isAuthenticated} toggleAuth={toggleIsAuthenticated} />
+      <Navigation/>
       <Switch>
-        <Route exact path="/">
+        <Route path="/home">
           <HomePage/>
         </Route>
         <Route path="/login">
@@ -29,13 +26,10 @@ function App() {
         <Route path="/register">
           <RegisterPage/>
         </Route>
-        <Route path="/player" isAuth={isAuthenticated}>
-          <PlayerPage/>
-        </Route>
         <Route path="/callback">
           <CallbackPage/>
         </Route>
-        <Route path="/user-profile" isAuth={isAuthenticated}>
+        <Route path="/profile">
           <ProfilePage/>
         </Route>
       </Switch>
@@ -44,7 +38,4 @@ function App() {
 }
 
 export default App;
-//Vragen:
-// Data API ophalen in App.js of op de pagina waar het nodig is
-// Callback page, nodig voor ophalen code, daarna weer naar home? Of home de callback page maken?
 

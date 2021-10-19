@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
+import {AuthContext} from "../../context/AuthContext";
+import styles from "./Profile.module.css"
 
 function ProfilePage() {
+  const { user } = useContext(AuthContext)
+
   return (
-    <h1>Profielinformatie</h1>
+    <>
+      <div className={styles["profile-container"]}>
+        <h1 className={styles["profile-header"]}>User information</h1>
+        <p><strong>Gebruikersnaam:</strong> {user.username}</p>
+        <p><strong>Email:</strong> {user.email}</p>
+      </div>
+    </>
   )
 }
 
