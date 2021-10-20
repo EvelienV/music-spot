@@ -3,7 +3,7 @@ import styles from "./Video.module.css"
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-function Video({trackName, trackArtist, className}) {
+function Video({trackName, trackArtist, iframeWidth, iframeHeight }) {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [videoID, setVideoID] = useState()
@@ -34,9 +34,11 @@ function Video({trackName, trackArtist, className}) {
     <p>Loading...</p>}
 
     { loading === false && error === false &&
-    <div className={styles[`{className}`]}>
+    <div className={styles["recently-played"]}>
       <iframe title="title"
               src={`https://www.youtube.com/embed/${videoID}`} frameBorder="0"
+              width={iframeWidth}
+              height={iframeHeight}
               allowFullScreen
       >
       </iframe>

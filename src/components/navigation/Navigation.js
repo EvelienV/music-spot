@@ -26,7 +26,7 @@ function Navigation() {
             </NavLink>
             <li className={styles["list-item"]}>
               <button type="button" onClick={data.logoff}>
-                Logout
+                LOGOUT
               </button>
             </li>
           </>

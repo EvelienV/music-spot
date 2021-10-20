@@ -14,21 +14,19 @@ function AuthContextProvider({children}) {
   })
 
   useEffect(() => {
-    console.log(isAuth)
     const token = localStorage.getItem("token")
-    console.log(token)
     if (!isAuth.user && token) {
       fetchUserData(token)
     } else if (isAuth.user && token) {
-      console.log("klaar")
+      console.log("user is logged in")
     } else {
       setIsAuth({
-        ...isAuth,
+        isAuth: false,
         user: null,
         status: "done"
       })
     }
-  })
+  }, [])
 
   function login(data) {
     localStorage.setItem("token", data.accessToken)
@@ -41,7 +39,6 @@ function AuthContextProvider({children}) {
       },
       status: "done"
     });
-    history.push("/")
   }
 
   async function fetchUserData(token) {
@@ -52,10 +49,6 @@ function AuthContextProvider({children}) {
           Authorization: `Bearer ${token}`,
         }
       });
-      console.log(result.data.username)
-      console.log(result.data.email)
-      console.log(result.data.id)
-
       setIsAuth({
         isAuth: true,
         user: {

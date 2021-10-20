@@ -2,7 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    margin-right: 12px;
+    margin-bottom: 12px;
 }
 
 .header-recently-played, .header-currently-playing {

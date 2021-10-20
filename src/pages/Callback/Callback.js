@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import queryString from "query-string";
-import {withRouter} from "react-router-dom"; //useHistory
+import {withRouter} from "react-router-dom";
 import axios from "axios";
 import Video from "../../components/video/Video";
 import styles from "./Callback.module.css";
@@ -16,7 +16,7 @@ function CallbackPage(props) {
 
   useEffect(() => {
     fetchData()
-  })
+  }, [])
 
   async function fetchData() {
     setError(false)
@@ -28,21 +28,21 @@ function CallbackPage(props) {
         }
       })
       setRecentlyPlayed(recentlyPlayedPlayer.data)
-      console.log(recentlyPlayed)
       const nowPlaying = await axios.get(`https://api.spotify.com/v1/me/player/currently-playing`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         }
       })
       setCurrentlyPlaying(nowPlaying.data)
-      console.log(currentlyPlaying)
     } catch (e) {
-      console.error(e.error.message)
-      console.log(e.error.message)
+      console.error(e)
       setError(true)
     }
     setLoading(false)
   }
+
+  console.log(currentlyPlaying)
+  console.log(recentlyPlayed)
 
   return (
     <>
@@ -54,7 +54,8 @@ function CallbackPage(props) {
             key={currentlyPlaying.item.id}
             trackName={currentlyPlaying.item.name}
             trackArtist={currentlyPlaying.item.album.artists[0].name}
-            className="currently-playing"
+            iframeWidth="896px"
+            iframeHeight="500px"
           />
 
         </div>
@@ -70,7 +71,8 @@ function CallbackPage(props) {
                 key={recentPlay.track.id}
                 trackName={recentPlay.track.name}
                 trackArtist={recentPlay.track.artists[0].name}
-                className="recently-played"
+                iframeWidth="300px"
+                iframeHeight="168px"
               />
             })}
           </div>
