@@ -1,18 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import styles from "./Register.module.css";
 import {Link, useHistory} from "react-router-dom";
 
 function RegisterPage() {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState()
   const history = useHistory();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    mode: "onBlur"
+  });
 
   async function onRegister(data) {
+    setError(false)
+    setLoading(true)
+
     try {
-      const test = await axios.get('https://polar-lake-14365.herokuapp.com/api/test/all');
-      console.log(test)
-      const result = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signup', {
+      await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signup', {
         username: data.username,
         email: data.email,
         password: data.password,
@@ -22,8 +28,11 @@ function RegisterPage() {
       });
       history.push("/login")
     } catch (e) {
-      console.error(e.response)
+      console.error(e.response.data.message)
+      setError(true)
+      setErrorMessage(e.response.data.message)
     }
+    setLoading(false)
   }
 
   return (
@@ -66,7 +75,8 @@ function RegisterPage() {
             placeholder="Password"
           />
           {errors.password && <p className="error-message">{errors.password.message}</p>}
-          <button className={styles["register-button"]} type="submit">
+          {error && <h3 className="error-message">{errorMessage}</h3>}
+          <button className={styles["register-button"]} type="submit" disabled={loading}>
             Register
           </button>
         </form>

@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from "react";
-import styles from "./Video.module.css"
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-function Video({trackName, trackArtist, iframeWidth, iframeHeight }) {
+function Video({trackName, trackArtist, iframeWidth, iframeHeight, className }) {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [videoID, setVideoID] = useState()
 
   useEffect(() => {
-    fetchVideoId()
+    console.log(trackArtist, trackName, videoID)
+    setError(false)
+    setLoading(true)
+    if(!videoID) {
+      fetchVideoId()
+    }
+    setLoading(false)
   }, [])
 
   async function fetchVideoId() {
-    setError(false)
-    setLoading(true)
     try {
       const videoListTrack = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${trackName}%20${trackArtist}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,{
         headers: {}
@@ -23,7 +26,6 @@ function Video({trackName, trackArtist, iframeWidth, iframeHeight }) {
     } catch (e) {
       console.log(e.response.data.error.message)
       setError(true)
-
     }
     setLoading(false)
   }
@@ -34,7 +36,7 @@ function Video({trackName, trackArtist, iframeWidth, iframeHeight }) {
     <p>Loading...</p>}
 
     { loading === false && error === false &&
-    <div className={styles["recently-played"]}>
+
       <iframe title="title"
               src={`https://www.youtube.com/embed/${videoID}`} frameBorder="0"
               width={iframeWidth}
@@ -42,17 +44,17 @@ function Video({trackName, trackArtist, iframeWidth, iframeHeight }) {
               allowFullScreen
       >
       </iframe>
-      <p className={styles["artist-name"]}>{trackArtist}</p>
-      <p className={styles["track-name"]}>{trackName}</p>
-    </div>}
+    }
 
     {error === true
     &&
-      <div className={styles["recently-played"]} >
-        <p>Oops... out of credits</p>
-        <p className={styles["artist-name"]}>{trackArtist}</p>
-        <p className={styles["track-name"]}>{trackName}</p>
-      </div>
+        <iframe title="title"
+                src={`https://www.youtube.com/embed/${videoID}`} frameBorder="0"
+                width={iframeWidth}
+                height={iframeHeight}
+                allowFullScreen
+        >
+        </iframe>
     }
     </>
   );

@@ -5,7 +5,9 @@ import axios from "axios";
 export const AuthContext = createContext({})
 
 // eslint-disable-next-line react/prop-types
-function AuthContextProvider({children}) {
+function AuthContextProvider({ children }) {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const [isAuth, setIsAuth] = useState({
     isAuth: false,
@@ -15,10 +17,8 @@ function AuthContextProvider({children}) {
 
   useEffect(() => {
     const token = localStorage.getItem("token")
-    if (!isAuth.user && token) {
+    if (token) {
       fetchUserData(token)
-    } else if (isAuth.user && token) {
-      console.log("user is logged in")
     } else {
       setIsAuth({
         isAuth: false,
@@ -42,6 +42,8 @@ function AuthContextProvider({children}) {
   }
 
   async function fetchUserData(token) {
+    setError(false)
+    setLoading(true)
     try {
       const result = await axios.get("https://polar-lake-14365.herokuapp.com/api/user", {
         headers: {
@@ -60,21 +62,30 @@ function AuthContextProvider({children}) {
       });
     } catch (e) {
       console.error(e)
+      localStorage.removeItem("token")
+      setIsAuth({
+        isAuth: false,
+        user: null,
+        status: "done"
+      });
     }
   }
 
   function logoff() {
+    localStorage.removeItem("token")
     setIsAuth({
-      ...isAuth,
-      isAuth: false
+      isAuth: false,
+      user: null,
+      status: "done"
     })
-    history.push("/home")
+    history.push("/")
   }
 
   const data = {
+    isAuth: isAuth.isAuth,
+    user: isAuth.user,
     login: login,
     logoff: logoff,
-    ...isAuth
   }
 
   return (

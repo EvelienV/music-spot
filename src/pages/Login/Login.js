@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import styles from "./Login.module.css";
@@ -6,20 +6,29 @@ import {Link, useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 
 function LoginPage() {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState()
   const history = useHistory();
   const { login } = useContext(AuthContext);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    mode: "onBlur"
+  });
 
   async function onLogin(data) {
+    setError(false)
+    setLoading(false)
     try {
       const result = await axios.post("https://polar-lake-14365.herokuapp.com/api/auth/signin", {
         username: data.username,
         password: data.password,
       })
       login(result.data)
-      history.push("/home")
+      history.push("/")
     } catch (e) {
       console.error(e.response)
+      setError(true)
+      setErrorMessage(e.response.data.error)
     }
   }
 

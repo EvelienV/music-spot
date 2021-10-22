@@ -4,7 +4,7 @@ import styles from "./Home.module.css"
 import {AuthContext} from "../../context/AuthContext";
 
 function HomePage() {
-  const data = useContext(AuthContext)
+  const { isAuth } = useContext(AuthContext)
 
   function loginSpotify() {
     window.open(`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=user-read-recently-played%20user-modify-playback-state%20user-read-currently-playing`,"_self")
@@ -30,7 +30,7 @@ function HomePage() {
             You can click play and have some fun!
           </li>
         </ol>
-        {data.isAuth === true &&
+        {isAuth &&
           <button className={styles["spotify-button"]} onClick={loginSpotify}>Give access to Spotify</button>
         }
       </div>

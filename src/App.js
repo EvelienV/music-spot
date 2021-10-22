@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import './App.css';
 import Navigation from "./components/navigation/Navigation";
 import {
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Navigation/>
       <Switch>
-        <Route path="/home">
+        <Route exact path="/">
           <HomePage/>
         </Route>
         <Route path="/login">
