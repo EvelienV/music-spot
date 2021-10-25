@@ -8,14 +8,11 @@
 }
 
 .recently-played {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-wrap: wrap;
     margin-bottom: 18px;
     margin-right: 18px;
     align-content: center;
     max-width: 300px;
+    min-width: 300px;
 }
 
 .header-recently-played, .header-currently-playing {
