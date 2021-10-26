@@ -1,20 +1,21 @@
 import React, {useContext} from "react";
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import styles from "./Home.module.css"
 import {AuthContext} from "../../context/AuthContext";
 
 function HomePage() {
-  const { isAuth } = useContext(AuthContext)
+  const {isAuth} = useContext(AuthContext)
 
   function loginSpotify() {
-    window.open(`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=user-read-recently-played%20user-modify-playback-state%20user-read-currently-playing`,"_self")
+    window.open(`https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=user-read-recently-played%20user-modify-playback-state%20user-read-currently-playing`, "_self")
   }
 
   return (
     <>
       <div className={styles["container"]}>
         <h1 className={styles["header-left"]}>Welcome</h1>
-        <p>With this application you can play  YouTube music video&apos;s from your recently played tracks on Spotify </p>
+        <p>With this application you can play YouTube music video&apos;s from your recently played tracks on
+          Spotify </p>
         <h2>How does that work?</h2>
         <ol>
           <li>
@@ -31,7 +32,7 @@ function HomePage() {
           </li>
         </ol>
         {isAuth &&
-          <button className={styles["spotify-button"]} onClick={loginSpotify}>Give access to Spotify</button>
+        <button className={styles["spotify-button"]} onClick={loginSpotify}>Give access to Spotify</button>
         }
       </div>
 

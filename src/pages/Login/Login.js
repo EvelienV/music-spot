@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import axios from "axios";
 import styles from "./Login.module.css";
 import {Link, useHistory} from "react-router-dom";
@@ -10,8 +10,8 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState()
   const history = useHistory();
-  const { login } = useContext(AuthContext);
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {login} = useContext(AuthContext);
+  const {register, handleSubmit, formState: {errors}} = useForm({
     mode: "onBlur"
   });
 

@@ -9,7 +9,7 @@ function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState()
   const history = useHistory();
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {register, handleSubmit, formState: {errors}} = useForm({
     mode: "onBlur"
   });
 

@@ -22,7 +22,7 @@ function CallbackPage(props) {
     setError(false)
     setLoading(true)
     try {
-      const recentlyPlayedPlayer = await axios.get(`https://api.spotify.com/v1/me/player/recently-played?limit=30`, {
+      const recentlyPlayedPlayer = await axios.get(`https://api.spotify.com/v1/me/player/recently-played?limit=10`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         }
@@ -45,45 +45,47 @@ function CallbackPage(props) {
     <>
       {Object.keys(currentlyPlaying).length > 0 && !error && !loading &&
       <div className={styles["currently-playing-container"]}>
-        <h1 className={styles["header-currently-playing"]} key={currentlyPlaying.item.href}>Playing now: {currentlyPlaying.item.album.artists[0].name} - {currentlyPlaying.item.name}</h1>
-          <Video
-            trackName={currentlyPlaying.item.name}
-            trackArtist={currentlyPlaying.item.album.artists[0].name}
-          />
+        <h1 className={styles["header-currently-playing"]} key={currentlyPlaying.item.href}>Playing
+          now: {currentlyPlaying.item.album.artists[0].name} - {currentlyPlaying.item.name}</h1>
+        <Video
+          trackName={currentlyPlaying.item.name}
+          trackArtist={currentlyPlaying.item.album.artists[0].name}
+        />
       </div>
       }
 
       {Object.keys(recentlyPlayed).length > 0 && !error && !loading &&
-        <div className={styles["videos-container"]}>
-          <h1 className={styles["header-recently-played"]}>Recently played songs</h1>
-          <div className={styles["videos"]}>
-            {recentlyPlayed.items.map((recentPlay) => {
-              return (
-                <>
-                  <div className={styles["recently-played"]} key={recentPlay.track.id}>
-                    <Video
-                      trackName={recentPlay.track.name}
-                      trackArtist={recentPlay.track.artists[0].name}
-                    />
-                    <p className={styles["artist-name"]}>{recentPlay.track.artists[0].name}</p>
-                    <p className={styles["track-name"]}>{recentPlay.track.name}</p>
+      <div className={styles["videos-container"]}>
+        <h1 className={styles["header-recently-played"]}>Recently played songs</h1>
+        <div className={styles["videos"]}>
 
-                  </div>
+          {recentlyPlayed.items.map((recentPlay) => {
+            return (
+              <>
+                <div className={styles["recently-played"]} key={recentPlay.track.id}>
+                  <Video
+                    trackName={recentPlay.track.name}
+                    trackArtist={recentPlay.track.artists[0].name}
+                  />
+                  <p className={styles["artist-name"]}>{recentPlay.track.artists[0].name}</p>
+                  <p className={styles["track-name"]}>{recentPlay.track.name}</p>
 
-                </>
-              )
-            })}
-          </div>
+                </div>
+
+              </>
+            )
+          })}
         </div>
+      </div>
       }
 
       {error &&
-        <p>Error</p>
+      <p>Error</p>
 
       }
 
       {loading &&
-      <p>Error</p>
+      <p>Loading</p>
 
       }
     </>

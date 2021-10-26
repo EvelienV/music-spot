@@ -1,11 +1,7 @@
 import React from "react";
 import './App.css';
 import Navigation from "./components/navigation/Navigation";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import HomePage from "./pages/Home/Home";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";

@@ -3,7 +3,7 @@ import {AuthContext} from "../../context/AuthContext";
 import styles from "./Profile.module.css"
 
 function ProfilePage() {
-  const { user } = useContext(AuthContext)
+  const {user} = useContext(AuthContext)
 
   return (
     <>

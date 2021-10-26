@@ -5,7 +5,7 @@ import axios from "axios";
 export const AuthContext = createContext({})
 
 // eslint-disable-next-line react/prop-types
-function AuthContextProvider({ children }) {
+function AuthContextProvider({children}) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -68,6 +68,7 @@ function AuthContextProvider({ children }) {
         user: null,
         status: "done"
       });
+      history.push("/")
     }
   }
 
@@ -90,7 +91,7 @@ function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider value={data}>
-      { isAuth.status === "done" ? children : <p>Loading...</p>}
+      {isAuth.status === "done" ? children : <p>Loading...</p>}
     </AuthContext.Provider>
   );
 }

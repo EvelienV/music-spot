@@ -6,7 +6,7 @@ import {AuthContext} from "../../context/AuthContext";
 
 // eslint-disable-next-line react/prop-types
 function Navigation() {
-  const { isAuth, logoff } = useContext(AuthContext)
+  const {isAuth, logoff} = useContext(AuthContext)
 
   return (
     <header>
@@ -16,7 +16,7 @@ function Navigation() {
              className={styles["logo"]}/>
       </div>
       <ul>
-        <NavLink exact to="/" activeClassName="current" >
+        <NavLink exact to="/" activeClassName="current">
           <li className={styles["list-item"]}>Home</li>
         </NavLink>
         {isAuth ?
